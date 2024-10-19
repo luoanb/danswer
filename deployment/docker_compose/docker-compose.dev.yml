@@ -118,6 +118,7 @@ services:
       - indexing_model_server
     restart: always
     environment:
+      - PIP_INDEX_URL=https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple
       - ENCRYPTION_KEY_SECRET=${ENCRYPTION_KEY_SECRET:-}
       # Gen AI Settings (Needed by DanswerBot)
       - GEN_AI_MAX_TOKENS=${GEN_AI_MAX_TOKENS:-}
@@ -250,6 +251,7 @@ services:
       fi"
     restart: on-failure
     environment:
+      - HF_HUB_OFFLINE=1
       - MIN_THREADS_ML_MODELS=${MIN_THREADS_ML_MODELS:-}
       # Set to debug to get more fine-grained logs
       - LOG_LEVEL=${LOG_LEVEL:-info}

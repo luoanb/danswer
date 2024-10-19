@@ -40,6 +40,11 @@ RUN apt-get update && \
 # Remove py which is pulled in by retry, py is not needed and is a CVE
 COPY ./requirements/default.txt /tmp/requirements.txt
 COPY ./requirements/ee.txt /tmp/ee-requirements.txt
+
+# 添加命令来展示pip的镜像源配置
+RUN echo "展示pip的镜像源配置：" && \
+    pip config list | grep index-url
+
 RUN pip install --no-cache-dir --upgrade \
         --retries 5 \
         --timeout 30 \
